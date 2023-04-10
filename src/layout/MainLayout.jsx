@@ -10,7 +10,11 @@ const MainLayout = () => {
 
          <div className="MainContent flex-1 min-h-screen">
             <Outlet />
+<<<<<<< HEAD
             <div></div>
+=======
+      
+>>>>>>> master
          </div>
 
          <Footer />
