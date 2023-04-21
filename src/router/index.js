@@ -8,6 +8,7 @@ import MovieDetail from "../pages/MovieDetail";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import User from "../pages/User";
+import CheckOut from "../pages/checkOut/CheckOut";
 
 const Router = () => {
    const elements = useRoutes([
@@ -32,8 +33,8 @@ const Router = () => {
                element: <MovieDetail />,
             },
             {
-               path: "user",
-               element: <User />,
+               path: "/checkout/:id",
+               element: <CheckOut />,
             },
          ],
       },

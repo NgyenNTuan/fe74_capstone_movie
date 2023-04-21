@@ -11,7 +11,7 @@ import { message } from "./ToastMessage";
 const MovieList = () => {
    const dispatch = useDispatch();
    const { movieList, isLoading } = useSelector((state) => state.quanLyPhim);
-
+  
    useEffect(() => {
       dispatch(getmovieList());
       // message.error('error')
