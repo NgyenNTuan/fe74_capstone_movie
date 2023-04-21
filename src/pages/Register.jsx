@@ -10,7 +10,7 @@ const Register = () => {
       handleSubmit,
       formState: { errors },
    } = useForm({ mode: "onChange" });
-
+// dũng
    const navigate = useNavigate();
 
    return (
