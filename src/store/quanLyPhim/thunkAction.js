@@ -7,7 +7,6 @@ export const getmovieList = createAsyncThunk(
       try {
          const res = await quanLyPhimServices.getMovieList("?maNhom=GP13");
 
-         console.log("res: ", res);
 
          return res.data.content;
       } catch (err) {
