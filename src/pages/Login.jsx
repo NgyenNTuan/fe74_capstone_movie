@@ -60,6 +60,7 @@ const Login = () => {
                <div className="mt-12">
                   <form
                   onSubmit={handleSubmit(async (value)=>{
+                     console.log(value);
                      dispatch(login(value));
                   })}
                   

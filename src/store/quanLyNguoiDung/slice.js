@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login } from "./thunkAction";
+import { layThongTinNguoiDung, login } from "./thunkAction";
 
 const initialState = {
    user: undefined,
+   thongTinNguoiDung: {},
 };
 
 const quanLyNguoiDungSlice = createSlice({
@@ -13,20 +14,25 @@ const quanLyNguoiDungSlice = createSlice({
          localStorage.removeItem("user");
          state.user = undefined;
       },
-      getUser: (state,action)=>{
+      getUser: (state, action) => {
          const data = localStorage.getItem("user")
-         if(data){
+         if (data) {
             state.user = JSON.parse(data)
          }
-      }
+      },
+
    },
    extraReducers: (builder) => {
-      builder.addCase(login.fulfilled, (state, action) => {
-         console.log(action.payload);
-         state.user = action.payload;
-         localStorage.setItem("user", JSON.stringify(action.payload));
-      });
-   },
+      builder
+         .addCase(login.fulfilled, (state, action) => {
+            console.log(action.payload);
+            state.user = action.payload;
+            localStorage.setItem("user", JSON.stringify(action.payload));
+         })
+         .addCase(layThongTinNguoiDung.fulfilled, (state, action) => {
+            state.thongTinNguoiDung = action.payload;
+         });
+},
 });
 
 export const quanLyNguoiDungReducer = quanLyNguoiDungSlice.reducer;
