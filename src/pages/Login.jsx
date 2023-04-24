@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/quanLyNguoiDung/thunkAction";
 import { Navigate, useNavigate } from "react-router-dom";
+import { checkToken } from "../constant/api";
 
 const Login = () => {
    const {
@@ -24,7 +25,7 @@ const Login = () => {
    // }, [user]);
 
    const dispatch = useDispatch();
-
+   checkToken()
    const navigate = useNavigate();
 
    const { user } = useSelector((state) => state.quanLyNguoiDung);
@@ -60,7 +61,6 @@ const Login = () => {
                <div className="mt-12">
                   <form
                   onSubmit={handleSubmit(async (value)=>{
-                     console.log(value);
                      dispatch(login(value));
                   })}
                   

@@ -12,7 +12,7 @@ import * as signalR from '@aspnet/signalr'
 // code connect to server
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const DOMAIN = 'https://movienew.cybersoft.edu.vn/'
-export const connection = new signalR.HubConnectionBuilder().withUrl(`${DOMAIN}/DatVeHub`).configureLogging(signalR.LogLevel.Information).build();
+export const connection = new signalR.HubConnectionBuilder().withUrl(`${DOMAIN}DatVeHub`).configureLogging(signalR.LogLevel.Information).build();
 connection.start().then(function () {
    root.render(
       <Provider store={store}>
