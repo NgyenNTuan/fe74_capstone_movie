@@ -8,7 +8,6 @@ import { quanLyDatVeAction } from '../../store/quanLyDatVe/slice'
 import _ from 'lodash'
 import { Skeleton, Tabs } from 'antd';
 import { layThongTinNguoiDung } from '../../store/quanLyNguoiDung/thunkAction'
-import { quanLyNguoiDungActions } from '../../store/quanLyNguoiDung/slice'
 import moment from 'moment/moment'
 import { connection } from '../..'
 import { checkToken } from '../../constant/api'
