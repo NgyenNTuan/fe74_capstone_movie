@@ -29,7 +29,7 @@ const CheckOut = () => {
     }, [dispatch])
     const { thongTinPhim, danhSachGhe } = chiTietPhongVe
 
-    console.log(dsGheKhachKhacDangDat);
+    
     const renderSeats = () => {
         return danhSachGhe.map((ghe, index) => {
 

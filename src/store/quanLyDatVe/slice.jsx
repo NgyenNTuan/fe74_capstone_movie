@@ -53,9 +53,6 @@ const quanLyDatVeSlice = createSlice({
             console.log(action.payload);
             tabActiveNew = action.payload
             return { ...state, tabActive: tabActiveNew }
-        },
-        datGhe: (state, action) => {
-            
         }
     },
     extraReducers: (builder) => {
