@@ -114,6 +114,8 @@ const Header = () => {
                         <button
                            onClick={() => {
                               dispatch(quanLyNguoiDungActions.logOut());
+                              
+                              navigate("/login");
                            }}
                            className="p-[8px] border border-[#000] rounded-lg hover:bg-slate-400 hover:text-white transition-all duration-300 relative -top-[10px]"
                         >

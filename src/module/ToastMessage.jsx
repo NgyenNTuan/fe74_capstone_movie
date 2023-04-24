@@ -12,7 +12,7 @@ export const ToastMessage = () => {
    Object.assign(message, toastClone);
    return (
       <div>
-         <ToastContainer position="top-center" />
+         <ToastContainer position="top-right" />
       </div>
    );
 };

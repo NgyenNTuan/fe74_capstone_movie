@@ -11,12 +11,13 @@ import { layThongTinNguoiDung } from '../../store/quanLyNguoiDung/thunkAction'
 import { quanLyNguoiDungActions } from '../../store/quanLyNguoiDung/slice'
 import moment from 'moment/moment'
 import { connection } from '../..'
+import { checkToken } from '../../constant/api'
 
 const CheckOut = () => {
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.quanLyNguoiDung)
     const { chiTietPhongVe, isLoading, danhsachGheDangDat, dsGheKhachKhacDangDat } = useSelector((state) => state.quanLyDatVe)
-
+    checkToken()
     useEffect(() => {
         dispatch(getDatVe())
 
@@ -24,7 +25,7 @@ const CheckOut = () => {
         connection.on("loadDanhSanhGheDaDat", (dsGheKhachDat) => {
             console.log("file: CheckOut.jsx:25 ~ connection.on ~ dsGheDangDatReturn:", dsGheKhachDat)
         })
-        // dung checkoIUT
+      
 
     }, [dispatch])
     const { thongTinPhim, danhSachGhe } = chiTietPhongVe
