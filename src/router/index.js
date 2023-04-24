@@ -36,6 +36,10 @@ const Router = () => {
                path: "/checkout/:id",
                element: <CheckOut />,
             },
+            {
+               path: "/user",
+               element: <User />,
+            },
          ],
       },
       {
