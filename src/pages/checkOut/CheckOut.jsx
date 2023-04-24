@@ -23,8 +23,8 @@ const CheckOut = () => {
         // Load ds ghế đặt từ server
         connection.on("loadDanhSanhGheDaDat", (dsGheKhachDat) => {
             console.log("file: CheckOut.jsx:25 ~ connection.on ~ dsGheDangDatReturn:", dsGheKhachDat)
-            
         })
+        // dung checkoIUT
 
     }, [dispatch])
     const { thongTinPhim, danhSachGhe } = chiTietPhongVe
