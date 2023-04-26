@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
-import "./../pages/checkOut/CheckOut.css"
+import "./../pages/checkOut/CheckOut.css";
 const MainLayout = () => {
    return (
       <div className="MainLayout flex flex-col h-full">

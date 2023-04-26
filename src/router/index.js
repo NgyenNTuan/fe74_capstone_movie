@@ -2,9 +2,8 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import MainLayoutAdmin from "../layout/MainLayoutAdmin";
-import Home from "../pages/Home";
+import Home from "../pages/home/Home";
 import About from "../pages/About";
-import Contact from "../pages/Contact";
 import MovieDetail from "../pages/MovieDetail";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
@@ -21,12 +20,12 @@ const Router = () => {
          element: <MainLayout />,
          children: [
             {
-               path: "/home",
+               path: "/",
                element: <Home />,
             },
             {
-               path: "/contact",
-               element: <Contact />,
+               path: "/home",
+               element: <Home />,
             },
             {
                path: "/about",
@@ -57,9 +56,9 @@ const Router = () => {
       {
          path: "/admin",
          element: <MainLayoutAdmin />,
-         children:[
+         children: [
             {
-         path: "/admin",
+               path: "/admin",
                path: "/admin/users",
                element: <Dashboard />,
             },
@@ -72,7 +71,7 @@ const Router = () => {
                path: "/admin/showtime",
                element: <Showtime />,
             },
-         ]
+         ],
       },
    ]);
    return elements;
