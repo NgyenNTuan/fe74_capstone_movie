@@ -1,3 +1,41 @@
+.MainLayout {
+    position: relative;
+    background-image: url("./../../assets/img/bgmovie.jpg");
+    background-size: cover;
+    background-position: center;
+
+}
+
+.css-dev-only-do-not-override-1vtf12y.ant-tabs-top>.ant-tabs-nav::before {
+    border: none !important;
+}
+
+.linner,
+.ticked1 {
+    border-radius: 3px;
+    background: rgb(230, 167, 93);
+    background: linear-gradient(90deg, rgba(230, 167, 93, 1) 27%, rgba(217, 115, 63, 1) 79%);
+}
+
+.css-dev-only-do-not-override-1vtf12y.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: rgb(243, 115, 51);
+    text-shadow: 0 0 0.25px currentcolor;
+}
+
+.ant-tabs-tab-active {
+  
+  
+}
+
+.cover {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
 .ghe {
     border: 3px solid orange;
@@ -7,11 +45,14 @@
     margin: 6px 10px;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: 700
+    font-weight: 700;
+    background-color: rgb(171, 131, 131);
 }
-.gheVip{
+
+.gheVip {
     background-color: antiquewhite;
 }
+
 .rowNumber {
     /* font-size: 25px; */
     width: 38px;
@@ -43,12 +84,12 @@
     border-radius: 5px;
     width: 38px;
     height: 35px;
-   
+
 }
 
 .gheDangChon {
     background: rgb(109, 238, 109);
- 
+
     color: #000;
 
     cursor: pointer;
@@ -57,8 +98,9 @@
     height: 35px;
 
 }
+
 /* Ghe cua minh dat */
-.gheDaDuocDat { 
+.gheDaDuocDat {
     background-color: rgb(179, 208, 234);
     border: 3px solid orange;
     color: #000;
@@ -68,7 +110,8 @@
     width: 38px;
     height: 35px;
 }
-.gheKhachDangDat { 
+
+.gheKhachDangDat {
     background-color: rgb(171, 137, 241);
     border: 3px solid orange;
     color: #000;
@@ -78,16 +121,34 @@
     width: 38px;
     height: 35px;
 }
+
 .anticon svg {
     display: inline-block;
     margin-top: -7px;
 }
+
 tr>th {
-    
-   padding: 0px 20px;
+
+    padding: 0px 20px;
 }
-.ant-tabs-nav{
+
+.ant-tabs-nav {
     width: 1250px !important;
     left: 0 !important;
     margin: 0 auto !important;
+}
+
+.bg-r01 {
+    background-color: rgb(124, 124, 124);
+    opacity: .8;
+}
+
+.css-dev-only-do-not-override-1vtf12y.ant-tabs .ant-tabs-tab-btn {
+    color: #fff;
+
+}
+
+.box__bill {
+    box-shadow: 0px 0px 27px -5px #fff;
+    border-radius: 10px;
 }
