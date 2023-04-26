@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { datVe, getDatVe } from "./thunkAction";
 import { ThongTinLichChieu } from './../../components/core/models/ThongTinPhongVe'
 import { toast } from "react-toastify";
+import { connection } from "../..";
+import { json } from "react-router-dom";
 
 
 const initialState = {
     chiTietPhongVe: new ThongTinLichChieu(),
     danhsachGheDangDat: [],
-    dsGheKhachKhacDangDat: [{ maGhe: 90795 }, { maGhe: 90796 }],
+    dsGheKhachKhacDangDat: [],
     tabActive: '1',
     isLoading: false,
     error: undefined,
@@ -50,9 +52,18 @@ const quanLyDatVeSlice = createSlice({
         },
         changeTab: (state, action) => {
             let tabActiveNew = deepCopyFunction(state.tabActive)
-            console.log(action.payload);
             tabActiveNew = action.payload
             return { ...state, tabActive: tabActiveNew }
+        },
+        datGheDangDat: (state, action) => {
+            let danhSachGheDangDat = deepCopyFunction(state.danhsachGheDangDat)
+            let taiKhoan = action.payload.user.taiKhoan
+            console.log("file: slice.jsx:61 ~ taiKhoan:", taiKhoan)
+            let maLichChieu = action.payload.maLichChieu
+            danhSachGheDangDat = JSON.stringify(danhSachGheDangDat)
+            // call api signalr 
+            connection.invoke("datGhe", taiKhoan, danhSachGheDangDat, maLichChieu)
+           
         }
     },
     extraReducers: (builder) => {
@@ -70,7 +81,6 @@ const quanLyDatVeSlice = createSlice({
             })
             .addCase(datVe.fulfilled, (state, action) => {
                 state.danhsachGheDangDat = []
-                console.log(action.payload.data);
                 if (action.payload.data.statusCode === 200) {
                     toast.success(action.payload.data.content)
                 }

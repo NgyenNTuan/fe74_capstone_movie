@@ -2,16 +2,20 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { quanLyNguoiDungActions } from "../store/quanLyNguoiDung/slice";
-
+import { Select } from 'antd';
+import { useTranslation } from "react-i18next";
 const Header = () => {
+   const { t, i18n } = useTranslation()
    const navigate = useNavigate();
 
    const dispatch = useDispatch();
 
    const { user } = useSelector((state) => state.quanLyNguoiDung);
-
+   const handleChange = (value) => {
+      i18n.changeLanguage(value)
+   };
    return (
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 z-20">
          <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="https://flowbite.com/" className="flex items-center">
                <img
@@ -49,7 +53,7 @@ const Header = () => {
                className="hidden w-full md:block md:w-auto"
                id="navbar-default"
             >
-               <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+               <ul className="items-center font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                   <li>
                      <p
                         onClick={() => {
@@ -86,14 +90,7 @@ const Header = () => {
                         Pricing
                      </a>
                   </li>
-                  <li>
-                     <a
-                        href="#"
-                        className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                     >
-                        Contact
-                     </a>
-                  </li>
+
                   {!!!user && (
                      <li>
                         <NavLink
@@ -105,31 +102,54 @@ const Header = () => {
                      </li>
                   )}
                   {user && (
-                     <div className="flex gap-1 dark:text-white">
+                     <div className="items-center flex gap-1 dark:text-white">
                         <p
                            onClick={() => {
                               navigate("/user");
                            }}
                            className="cursor-pointer"
                         >
-                           Hello {user.taiKhoan}
+                           {t("hello")}, {user.taiKhoan}
                         </p>
-                        <button
+                        <p
                            onClick={() => {
                               dispatch(quanLyNguoiDungActions.logOut());
 
                               navigate("/login");
                            }}
-                           className="p-[8px] border border-[#000] rounded-lg hover:bg-slate-400 hover:text-white transition-all duration-300 relative -top-[10px]"
+                           className="cursor-pointer py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                         >
-                           Log out
-                        </button>
+                           {t("logout")}
+                        </p>
                      </div>
                   )}
+                  <li>
+                     <Select
+                        defaultValue="Languege"
+                        style={{
+                           width: 120,
+                        }}
+                        onChange={handleChange}
+                        options={[
+                           {
+                              value: 'en',
+                              label: 'English',
+                           },
+                           {
+                              value: 'vn',
+                              label: 'Việt Nam',
+                           },
+                           {
+                              value: 'chi',
+                              label: 'Trung Quốc',
+                           }
+                        ]}
+                     />
+                  </li>
                </ul>
             </div>
          </div>
-      </nav>
+      </nav >
    );
 };
 

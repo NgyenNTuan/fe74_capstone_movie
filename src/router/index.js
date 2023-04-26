@@ -1,6 +1,7 @@
 import React from "react";
-import { Outlet, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
+import MainLayoutAdmin from "../layout/MainLayoutAdmin";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
@@ -9,6 +10,9 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import User from "../pages/User";
 import CheckOut from "../pages/checkOut/CheckOut";
+import Dashboard from "../pages/Admin/Dashboard/Dashboard";
+import Fims from "../pages/Admin/Flims/Fims";
+import Showtime from "../pages/Admin/Showtime/Showtime";
 
 const Router = () => {
    const elements = useRoutes([
@@ -49,6 +53,26 @@ const Router = () => {
       {
          path: "/login",
          element: <Login />,
+      },
+      {
+         path: "/admin",
+         element: <MainLayoutAdmin />,
+         children:[
+            {
+         path: "/admin",
+               path: "/admin/users",
+               element: <Dashboard />,
+            },
+            {
+               path: "/admin/film",
+               element: <Fims />,
+            },
+            ,
+            {
+               path: "/admin/showtime",
+               element: <Showtime />,
+            },
+         ]
       },
    ]);
    return elements;
