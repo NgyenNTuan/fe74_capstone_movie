@@ -12,6 +12,7 @@ import CheckOut from "../pages/checkOut/CheckOut";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import Fims from "../pages/Admin/Flims/Fims";
 import Showtime from "../pages/Admin/Showtime/Showtime";
+import AddNew from "../pages/Admin/Flims/AddNew";
 
 const Router = () => {
    const elements = useRoutes([
@@ -64,9 +65,16 @@ const Router = () => {
             },
             {
                path: "/admin/film",
-               element: <Fims />,
+               element: <Fims />
             },
-            ,
+            {
+               path: "/admin/film/addnew",
+               element: <AddNew />,
+            },
+            {
+               path: "/admin/showtime",
+               element: <Showtime />,
+            },
             {
                path: "/admin/showtime",
                element: <Showtime />,
