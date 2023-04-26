@@ -4,16 +4,30 @@ import {
     LaptopOutlined,
     NotificationOutlined,
 } from '@ant-design/icons';
-import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import './../pages/CSS/admin.css'
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
 const Dashboard = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const {
         token: { colorBgContainer },
     } = theme.useToken();
     const { SubMenu } = Menu;
     const { Header, Content, Sider } = Layout;
-
+    const { user } = useSelector(state => state.quanLyNguoiDung)
+    useEffect(() => {
+        if (!localStorage.getItem("user")) {
+            toast.error("Bạn không có quền truy cập vào trang admin");
+            return (navigate("/home"))
+        }
+        if (user.maLoaiNguoiDung !== "QuanTri"){
+            toast.error("Bạn không có quền truy cập vào trang admin");
+            return (navigate("/home"))
+        }
+    }, [])
     return (
         <Layout>
 
@@ -35,12 +49,18 @@ const Dashboard = () => {
                         style={{ height: '100%', borderRight: 0 }}
                     >
                         <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                            <Menu.Item key="1">
-                                <NavLink to="/admin/users">Home</NavLink>
-                            </Menu.Item>
+                           
+                        </SubMenu>
+                        <SubMenu key="sub2" icon={<UserOutlined />} title="Film">
                             <Menu.Item key="2">
                                 <NavLink to="/admin/film">Films</NavLink>
                             </Menu.Item>
+                            <Menu.Item key="4">
+                                <NavLink to="/admin/film/addnew">Thêm Film</NavLink>
+                            </Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub3" icon={<UserOutlined />} title="Show time">
+    
                             <Menu.Item key="3">
                                 <NavLink to="/admin/showtime">Showtimes</NavLink>
                             </Menu.Item>

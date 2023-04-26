@@ -99,10 +99,10 @@ const Login = () => {
 
                            {...register("matKhau", {
                               required: "Vui lòng nhập tài khoản !",
-                              pattern: {
-                                 value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{0,}$/,
-                                 message: "Vui lòng nhập đúng mật khẩu",
-                              },
+                              // pattern: {
+                              //    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{0,}$/,
+                              //    message: "Vui lòng nhập đúng mật khẩu",
+                              // },
                            })}
                         />
                         <p className="text-[13px] text-yellow-200">
