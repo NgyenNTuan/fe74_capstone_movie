@@ -13,3 +13,16 @@ export const getTheaterList = createAsyncThunk(
       }
    }
 );
+
+export const getGroupTheater = createAsyncThunk(
+   "quanLyRap/getTheaterList",
+   async (payload, { rejectWithValue }) => {
+      try {
+         const res = await quanLyRapServices.getGroupTheater();
+
+         return res.data.content;
+      } catch (error) {
+         return rejectWithValue(error);
+      }
+   }
+);

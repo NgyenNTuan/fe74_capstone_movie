@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getmovieList } from "./thunkAction";
+import { getbannerList, getmovieList } from "./thunkAction";
 
 const initialState = {
    movieList: [],
    isLoading: false,
    error: undefined,
+   bannlist: [],
 };
 
 const quanLyPhimSlice = createSlice({
@@ -24,6 +25,10 @@ const quanLyPhimSlice = createSlice({
          .addCase(getmovieList.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
+         })
+         .addCase(getbannerList.fulfilled, (state, action) => {
+            state.bannlist = action.payload;
+            state.isLoading = false;
          });
    },
 });
