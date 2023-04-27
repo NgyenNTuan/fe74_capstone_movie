@@ -33,7 +33,7 @@ const Router = () => {
                element: <About />,
             },
             {
-               path: "/moviedetail",
+               path: "/moviedetail/:id",
                element: <MovieDetail />,
             },
             {
@@ -65,7 +65,7 @@ const Router = () => {
             },
             {
                path: "/admin/film",
-               element: <Fims />
+               element: <Fims />,
             },
             {
                path: "/admin/film/addnew",

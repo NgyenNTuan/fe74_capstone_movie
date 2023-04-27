@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import MovieList from "../../module/MovieList";
 import { useSelector } from "react-redux";
 import Banner from "./Banner";
-import ShowtimeMovies from "./ShowtimeMovies";
+import ShowtimeMovies from "./../../components/ShowtimeMovies";
 import ComingSoon from "./ComingSoon";
 
 const contentStyle = {

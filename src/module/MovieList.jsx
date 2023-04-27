@@ -9,12 +9,13 @@ import "./movieList.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { message } from "./ToastMessage";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MovieList = () => {
    const dispatch = useDispatch();
    const { movieList, isLoading } = useSelector((state) => state.quanLyPhim);
 
+   const navigate = useNavigate();
    useEffect(() => {
       dispatch(getmovieList());
       // message.error('error')
@@ -38,10 +39,10 @@ const MovieList = () => {
    }
 
    return (
-      <div>
-         <h3>showing MOVIES</h3>
+      <div className="pt-3">
+         <h3 className="title-list">ĐANG CHIẾU</h3>
          <section className="text-gray-600 body-font">
-            <div className="container px-5 py-24 mx-auto">
+            <div className="container px-5 py-16 mx-auto">
                <div className="flex flex-wrap -m-4">
                   {movieList?.map((movie) => {
                      return (
@@ -49,7 +50,12 @@ const MovieList = () => {
                            key={movie.maPhim}
                            className="lg:w-1/4 md:w-1/2 p-4 w-full movie-item"
                         >
-                           <a className="block relative h-[32rem] rounded overflow-hidden relative">
+                           <a
+                              onClick={() => {
+                                 navigate(`/moviedetail/${movie.maPhim}`);
+                              }}
+                              className="block relative h-[32rem] rounded overflow-hidden relative"
+                           >
                               <div className="movie-overlay"></div>
                               <img
                                  alt={movie.tenPhim}
@@ -71,13 +77,14 @@ const MovieList = () => {
                                  {movie.tenPhim}
                               </h2>
                               <div className="movie-checkout">
-                                 <NavLink
-                                    // to={`/checkout/${movie.maPhim}`}
-                                    to="/checkout/:id"
+                                 <p
+                                    onClick={() => {
+                                       navigate(`/checkout/${movie.maPhim}`);
+                                    }}
                                     className="text-white "
                                  >
                                     Mua vé
-                                 </NavLink>
+                                 </p>
                               </div>
 
                               {/* <p className="mt-1">$16.00</p> */}

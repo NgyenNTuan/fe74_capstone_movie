@@ -6,6 +6,7 @@ import { Select } from "antd";
 import { useTranslation } from "react-i18next";
 import "./header.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useScrollDirection } from "./scrollDirection";
 
 const Header = () => {
    const { t, i18n } = useTranslation();
@@ -17,8 +18,14 @@ const Header = () => {
    const handleChange = (value) => {
       i18n.changeLanguage(value);
    };
+
+   const scrollDirection = useScrollDirection();
    return (
-      <header className="p-4 bg-gray-900 text-gray-100 bg-opacity-40 fixed w-full z-50">
+      <header
+         className={`fixed ${
+            scrollDirection === "down" ? "-top-28" : "top-0"
+         } p-4 bg-gray-900 text-gray-100 bg-opacity-40 w-full z-50`}
+      >
          <div className="container flex justify-between h-16 mx-auto">
             <NavLink
                rel="noopener noreferrer"
@@ -109,7 +116,7 @@ const Header = () => {
                      onClick={() => {
                         navigate("/user");
                      }}
-                     className="cursor-pointer"
+                     className="cursor-pointer self-center px-8 py-3 rounded hover:text-orange-400"
                   >
                      Hello {user.taiKhoan}
                   </p>

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "antd";
-import { useSelector } from "react-redux";
-import { getbannerList } from "../../store/quanLyPhim/thunkAction";
 import { quanLyPhimServices } from "../../services/quanLyPhim.services";
 
 const contentStyle = {
