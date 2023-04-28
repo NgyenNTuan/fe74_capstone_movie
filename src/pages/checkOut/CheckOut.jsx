@@ -5,7 +5,7 @@ import style from "./CheckOut.module.css";
 import "./../checkOut/CheckOut.css";
 import { datVe, getDatVe } from "../../store/quanLyDatVe/thunkAction";
 import { quanLyDatVeAction } from "../../store/quanLyDatVe/slice";
-import _ from "lodash";
+import _, { stubString } from "lodash";
 import { Skeleton, Tabs } from "antd";
 import { layThongTinNguoiDung } from "../../store/quanLyNguoiDung/thunkAction";
 import moment from "moment/moment";
@@ -23,7 +23,10 @@ const CheckOut = () => {
    } = useSelector((state) => state.quanLyDatVe);
    checkToken();
    useEffect(() => {
-      dispatch(getDatVe());
+      const url = window.location.href
+      const id = url.substring(url.lastIndexOf("/") + 1 || 1)
+      
+      dispatch(getDatVe(id));
       // Load ds ghế đặt từ server
       connection.on("loadDanhSachGheDaDat", (dsDatGhe) => {
          // console.log(dsDatGhe);
@@ -320,7 +323,7 @@ const KetQuaDatVe = () => {
       );
    }
    return (
-      <div className="max-w-screen-xl  mx-auto ">
+      <div className="max-w-screen-xl  mx-auto">
          <section className="text-gray-600 body-font">
             <div className="container px-1 py-1 mx-auto">
                <div className="flex flex-col text-center w-full mb-5">
@@ -356,15 +359,17 @@ export default function App() {
    const dispatch = useDispatch();
 
    return (
-      <Tabs
-         defaultActiveKey={1}
-         activeKey={tabActive}
-         className="tabs "
-         items={items}
-         onChange={(key) => {
-            dispatch(quanLyDatVeAction.changeTab(key.toString()));
-            dispatch(layThongTinNguoiDung());
-         }}
-      ></Tabs>
+      <div className="mt-32">
+         <Tabs
+            defaultActiveKey={1}
+            activeKey={tabActive}
+            className="tabs "
+            items={items}
+            onChange={(key) => {
+               dispatch(quanLyDatVeAction.changeTab(key.toString()));
+               dispatch(layThongTinNguoiDung());
+            }}
+         ></Tabs>
+      </div>
    );
 }

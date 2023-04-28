@@ -5,7 +5,8 @@ export const getDatVe = createAsyncThunk(
    "quanLyDatVe/getDatVe",
    async (payload, { rejectWithValue }) => {
       try {
-         const res = await quanLyDatVeServices.getDatVe("?MaLichChieu=44211");
+         console.log(payload);
+         const res = await quanLyDatVeServices.getDatVe("?MaLichChieu="+payload);
          return res.data.content;
       } catch (err) {
          return rejectWithValue(err);
