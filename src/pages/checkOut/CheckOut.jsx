@@ -23,7 +23,7 @@ const CheckOut = () => {
       dsGheKhachKhacDangDat,
    } = useSelector((state) => state.quanLyDatVe);
    checkToken();
-   const param = useParams()
+   const param = useParams();
    useEffect(() => {
       dispatch(getDatVe(param.id));
       // Load ds ghế đặt từ server
@@ -66,7 +66,7 @@ const CheckOut = () => {
                      thongTinDatVe.maLichChieu = thongTinPhim.maLichChieu;
                      dispatch(
                         quanLyDatVeAction.datGhe({
-                           ghe
+                           ghe,
                         })
                      );
                      dispatch(quanLyDatVeAction.datGheDangDat(thongTinDatVe));
@@ -358,7 +358,7 @@ export default function App() {
    const dispatch = useDispatch();
 
    return (
-      <div className="mt-32">
+      <div className="mt-32 z-10 relative">
          <Tabs
             defaultActiveKey={1}
             activeKey={tabActive}
