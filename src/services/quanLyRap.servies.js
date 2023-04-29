@@ -3,6 +3,12 @@ import http from "../constant/api";
 export const quanLyRapServices = {
    getTheaterList: (query = "") => http.get("QuanLyRap/LayThongTinHeThongRap"),
 
-   getGroupTheater: (query = "") =>
-      http.get(`QuanLyRap/LayThongTinCumRapTheoHeThong${query}`),
+   fetchGroupTheater: (query = "") =>
+      http.get(`QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${query}`),
+
+   fetchShowtimeInfoTheater: (query) =>
+      http.get(`QuanLyRap/LayThongTinLichChieuHeThongRap${query}`),
+
+   fetchShowtimeInfo: (query = "") =>
+      http.get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${query}`),
 };

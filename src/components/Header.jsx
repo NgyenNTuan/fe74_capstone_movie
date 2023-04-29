@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { quanLyNguoiDungActions } from "../store/quanLyNguoiDung/slice";
@@ -20,11 +20,12 @@ const Header = () => {
    };
 
    const scrollDirection = useScrollDirection();
+
    return (
       <header
          className={`fixed ${
             scrollDirection === "down" ? "-top-28" : "top-0"
-         } p-4 bg-gray-900 text-gray-100 bg-opacity-40 w-full z-50`}
+         } p-1 bg-gray-900 text-gray-100 bg-opacity-40 w-full z-50`}
       >
          <div className="container flex justify-between h-16 mx-auto">
             <NavLink

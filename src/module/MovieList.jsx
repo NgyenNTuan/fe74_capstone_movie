@@ -39,7 +39,7 @@ const MovieList = () => {
    }
 
    return (
-      <div className="pt-3">
+      <div className="pt-3 z-10 relative">
          <h3 className="title-list">ĐANG CHIẾU</h3>
          <section className="text-gray-600 body-font">
             <div className="container px-5 py-16 mx-auto">
@@ -79,7 +79,7 @@ const MovieList = () => {
                               <div className="movie-checkout">
                                  <p
                                     onClick={() => {
-                                       navigate(`/checkout/${movie.maPhim}`);
+                                       navigate(`/moviedetail/${movie.maPhim}`);
                                     }}
                                     className="text-white "
                                  >

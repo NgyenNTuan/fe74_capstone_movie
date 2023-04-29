@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "antd";
 import { quanLyPhimServices } from "../../services/quanLyPhim.services";
+import { useDispatch } from "react-redux";
 
 const contentStyle = {
    height: "100vh",
@@ -12,6 +13,7 @@ const contentStyle = {
 
 const Banner = () => {
    const [bannerList, setBannerList] = useState([]);
+   const dispatch = useDispatch();
 
    useEffect(() => {
       (async () => {

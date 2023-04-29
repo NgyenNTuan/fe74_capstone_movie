@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Tabs } from "antd";
+import { useParams, useNavigate } from "react-router-dom";
 import { quanLyPhimServices } from "../services/quanLyPhim.services";
+import ShowtimeDetail from "../components/ShowtimeDetail";
 
 const contentStyle = {
    backgroundImage: "url('./bgmovie.jpg')",
@@ -8,7 +10,7 @@ const contentStyle = {
 
 const MovieDetail = () => {
    const params = useParams();
-   console.log(params);
+   const navigate = useNavigate();
    const [movieInfo, setMovieInfo] = useState({});
 
    useEffect(() => {
@@ -22,19 +24,36 @@ const MovieDetail = () => {
       })();
    }, [params.id]);
 
+   const items = [
+      {
+         key: "1",
+         label: `TỔNG QUAN`,
+         children: `OVERVIEW`,
+      },
+      {
+         key: "2",
+         label: `ĐÁNH GIÁ`,
+         children: `REVIEW`,
+      },
+      {
+         key: "3",
+         label: `LỊCH CHIẾU`,
+         children: <ShowtimeDetail />,
+      },
+   ];
    return (
       <section
-         className="text-gray-600 body-font overflow-hidden pt-28"
+         className="text-gray-600 body-font overflow-hidden pt-28 z-10 relative"
          style={contentStyle}
       >
          <div className="container px-5 py-24 mx-auto">
             <div className="lg:w-4/5 mx-auto flex flex-wrap">
                <img
                   alt="ecommerce"
-                  className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                  className="lg:w-1/4 w-full lg:h-auto h-64 object-cover object-center rounded"
                   src={movieInfo?.hinhAnh}
                />
-               <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+               <div className="lg:w-3/4 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                   <h2 className="text-sm title-font text-gray-900 tracking-widest">
                      {movieInfo?.ngayKhoiChieu}
                   </h2>
@@ -144,7 +163,12 @@ const MovieDetail = () => {
                   </p>
 
                   <div className="flex">
-                     <button className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded">
+                     <button
+                        onClick={() => {
+                           navigate(`/checkout/${movieInfo.maPhim}`);
+                        }}
+                        className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded"
+                     >
                         Mua vé
                      </button>
                      <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-orange-400 ml-4">
@@ -160,6 +184,7 @@ const MovieDetail = () => {
                         </svg>
                      </button>
                   </div>
+                  <Tabs className="mt-3" items={items} />
                </div>
             </div>
          </div>
