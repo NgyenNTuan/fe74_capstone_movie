@@ -8,7 +8,6 @@ import ComingSoon from "./ComingSoon";
 const contentStyle = {
    backgroundImage: "url('./bgmovie.jpg')",
 };
-
 const Home = () => {
    // const { movieList } = useSelector((state) => state.quanLyPhim);
 

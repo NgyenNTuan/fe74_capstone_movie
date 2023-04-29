@@ -11,6 +11,7 @@ import { layThongTinNguoiDung } from "../../store/quanLyNguoiDung/thunkAction";
 import moment from "moment/moment";
 import { connection } from "../../index";
 import { checkToken } from "../../constant/api";
+import { useParams } from "react-router-dom";
 
 const CheckOut = () => {
    const dispatch = useDispatch();
@@ -22,11 +23,9 @@ const CheckOut = () => {
       dsGheKhachKhacDangDat,
    } = useSelector((state) => state.quanLyDatVe);
    checkToken();
+   const param = useParams()
    useEffect(() => {
-      const url = window.location.href
-      const id = url.substring(url.lastIndexOf("/") + 1 || 1)
-      
-      dispatch(getDatVe(id));
+      dispatch(getDatVe(param.id));
       // Load ds ghế đặt từ server
       connection.on("loadDanhSachGheDaDat", (dsDatGhe) => {
          // console.log(dsDatGhe);
@@ -67,7 +66,7 @@ const CheckOut = () => {
                      thongTinDatVe.maLichChieu = thongTinPhim.maLichChieu;
                      dispatch(
                         quanLyDatVeAction.datGhe({
-                           ghe,
+                           ghe
                         })
                      );
                      dispatch(quanLyDatVeAction.datGheDangDat(thongTinDatVe));
@@ -232,7 +231,7 @@ const CheckOut = () => {
                            thongTinDatVe.maLichChieu = thongTinPhim.maLichChieu;
                            dispatch(datVe(thongTinDatVe));
                            // call lai api
-                           dispatch(getDatVe());
+                           dispatch(getDatVe(param.id));
                         }}
                      >
                         ĐẶT VÉ
@@ -252,7 +251,7 @@ const KetQuaDatVe = () => {
    );
    useEffect(() => {
       dispatch(layThongTinNguoiDung());
-   }, [dispatch]);
+   }, [thongTinNguoiDung]);
 
    const renderTickedItem = () => {
       return thongTinNguoiDung.thongTinDatVe?.map((ticked, index) => {
@@ -367,7 +366,6 @@ export default function App() {
             items={items}
             onChange={(key) => {
                dispatch(quanLyDatVeAction.changeTab(key.toString()));
-               dispatch(layThongTinNguoiDung());
             }}
          ></Tabs>
       </div>
