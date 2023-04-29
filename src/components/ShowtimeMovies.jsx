@@ -17,69 +17,83 @@ const ShowtimeMovies = () => {
       // message.error('error')
    }, [dispatch]);
 
-   const getGroupT = async (query) => {
-      try {
-         const res = await quanLyRapServices.getGroupTheater(
-            `?maHeThongRap=${query}`
-         );
+   const [groupTheater, setGroupTheater] = useState([]);
 
-         console.log(res.data.content);
-         return res.data.content;
+   useEffect(() => {
+      (async () => {
+         try {
+            const res = await quanLyRapServices.fetchGroupTheater("BHDStar");
+
+            setGroupTheater(res.data.content);
+         } catch (error) {
+            console.log(error);
+         }
+      })();
+   }, []);
+
+   const getGroup = async (query) => {
+      try {
+         const res = await quanLyRapServices.fetchGroupTheater(query);
+
+         setGroupTheater(res.data.content);
       } catch (error) {
          console.log(error);
       }
    };
 
    return (
-      <div className="container" id="home-showtime">
-         <Tabs
-            tabPosition="left"
-            items={theaterList.map((theater) => {
-               return {
-                  label: (
-                     <img
-                        src={theater.logo}
-                        alt=""
-                        className="rounded-full"
-                        width="50"
-                     />
-                  ),
-                  key: theater.maHeThongRap,
-                  // children: (
-                  //    <Tabs
-                  //       tabPosition="left"
-                  //       items={dispatch(
-                  //          getGroupTheater(
-                  //             `?maHeThongRap=${theater.maHeThongRap}`
-                  //          )
-                  //       ).map((_, i) => {
-                  //          const id = String(i + 1);
-                  //          return {
-                  //             label: `Tab ${id}`,
-                  //             key: id,
-                  //             children: `Content of Tab ${id}`,
-                  //          };
-                  //       })}
-                  //    />
-                  //    // <div>
-                  //    //    {() => {
-                  //    //       return getGroupT(theater.maHeThongRap).map(
-                  //    //          (item) => {
-                  //    //             return (
-                  //    //                <div key={item.maCumRap}>
-                  //    //                   <h3>{item.tenCumRap}</h3>
-                  //    //                   <p>{item.diaChi}</p>
-                  //    //                </div>
-                  //    //             );
-                  //    //          }
-                  //    //       );
-                  //    //    }}
-                  //    // </div>
-                  // ),
-               };
-            })}
-         />
-      </div>
+      <section className="text-gray-600 body-font bg-white z-10 relative">
+         <div className="container px-72 py-24 mx-auto home-showtime">
+            <Tabs
+               defaultActiveKey="BHDStar"
+               className="parent-tab"
+               style={{ border: "1px solid gray", borderRadius: "4px" }}
+               tabPosition="left"
+               items={theaterList.map((theater) => {
+                  return {
+                     key: theater.maHeThongRap,
+                     label: (
+                        <img
+                           src={theater.logo}
+                           alt=""
+                           className="rounded-full"
+                           width="50"
+                        />
+                     ),
+                     children: (
+                        <Tabs
+                           style={{
+                              width: "600px",
+                           }}
+                           tabPosition="left"
+                           items={groupTheater?.map((item) => {
+                              console.log("d", groupTheater);
+
+                              return {
+                                 key: item.maCumRap,
+                                 label: (
+                                    <>
+                                       <h3 className="text-green-600 font-medium">
+                                          {item.tenCumRap}
+                                       </h3>
+                                       <p className="text-gray-500 address-tab">
+                                          {item.diaChi}
+                                       </p>
+                                    </>
+                                 ),
+                                 children: <></>,
+                              };
+                           })}
+                        />
+                     ),
+                  };
+               })}
+               onChange={(key) => {
+                  getGroup(key);
+               }}
+            />
+         </div>
+      </section>
    );
 };
 

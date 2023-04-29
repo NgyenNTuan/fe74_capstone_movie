@@ -5,7 +5,7 @@ const initialState = {
    movieList: [],
    isLoading: false,
    error: undefined,
-   bannlist: [],
+   listBanner: [],
 };
 
 const quanLyPhimSlice = createSlice({

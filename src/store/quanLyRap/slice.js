@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTheaterList } from "./thunkAction";
+import { getShowtimeInfo, getTheaterList } from "./thunkAction";
 
 const initialState = {
    theaterList: [],
@@ -11,14 +11,9 @@ const quanLyRapSlice = createSlice({
    initialState,
    reducers: {},
    extraReducers: (builder) => {
-      builder
-         .addCase(getTheaterList.pending, (state, action) => {})
-         .addCase(getTheaterList.fulfilled, (state, action) => {
-            state.theaterList = action.payload;
-         })
-         .addCase(getTheaterList.rejected, (state, action) => {
-            state.error = action.payload;
-         });
+      builder.addCase(getTheaterList.fulfilled, (state, action) => {
+         state.theaterList = action.payload;
+      });
    },
 });
 

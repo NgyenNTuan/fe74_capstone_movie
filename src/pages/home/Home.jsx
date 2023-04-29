@@ -5,16 +5,16 @@ import Banner from "./Banner";
 import ShowtimeMovies from "./../../components/ShowtimeMovies";
 import ComingSoon from "./ComingSoon";
 
-const contentStyle = {
-   backgroundImage: "url('./bgmovie.jpg')",
-};
+// const contentStyle = {
+//    backgroundImage: "url('./bgmovie.jpg')",
+// };
 const Home = () => {
    // const { movieList } = useSelector((state) => state.quanLyPhim);
 
    return (
       <div>
          <Banner />
-         <div style={contentStyle}>
+         <div>
             <MovieList />
          </div>
          <ComingSoon />
