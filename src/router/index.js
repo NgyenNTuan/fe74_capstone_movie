@@ -2,9 +2,8 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import MainLayoutAdmin from "../layout/MainLayoutAdmin";
-import Home from "../pages/Home";
+import Home from "../pages/home/Home";
 import About from "../pages/About";
-import Contact from "../pages/Contact";
 import MovieDetail from "../pages/MovieDetail";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
@@ -24,19 +23,19 @@ const Router = () => {
          element: <MainLayout />,
          children: [
             {
-               path: "/home",
+               path: "/",
                element: <Home />,
             },
             {
-               path: "/contact",
-               element: <Contact />,
+               path: "/home",
+               element: <Home />,
             },
             {
                path: "/about",
                element: <About />,
             },
             {
-               path: "/moviedetail",
+               path: "/moviedetail/:id",
                element: <MovieDetail />,
             },
             {
@@ -67,7 +66,7 @@ const Router = () => {
             },
             {
                path: "/admin/film",
-               element: <Fims />
+               element: <Fims />,
             },
             {
                path: "/admin/film/addnew",
@@ -85,7 +84,7 @@ const Router = () => {
                path: "/admin/user",
                element: <User1 />,
             },
-         ]
+         ],
       },
    ]);
    return elements;

@@ -1,0 +1,54 @@
+.home-showtime {
+   .ant-tabs-nav {
+      max-width: 375px;
+      overflow: hidden;
+   }
+   .parent-tab {
+      .ant-tabs-nav {
+         width: unset !important;
+      }
+   }
+   .ant-tabs-tab {
+      opacity: 0.5;
+      transition: all 0.5s;
+      &:hover {
+         opacity: 1;
+      }
+   }
+   .ant-tabs-tab-active {
+      opacity: 1;
+   }
+
+   .ant-tabs {
+      .ant-tabs-tab-btn {
+         color: black;
+         text-align: left;
+      }
+   }
+   .address-tab {
+      overflow: hidden;
+      width: 300px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+   }
+}
+
+.ant-tabs-ink-bar {
+   background-color: #d9733f !important;
+}
+
+.detail {
+   .ant-tabs-nav {
+      max-width: 100%;
+      overflow: hidden;
+   }
+   .address-tab {
+      overflow: hidden;
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+   }
+   .ant-tabs-ink-bar {
+      display: none;
+   }
+}

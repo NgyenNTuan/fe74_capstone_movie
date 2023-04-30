@@ -3,11 +3,14 @@ import { XoaPhim, capNhatPhim, getmovieList, layThongTinPhim, themPhimUploadHinh
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 // import { useHistory } from "react-router-dom";
+import { getbannerList, getmovieList } from "./thunkAction";
+
 const initialState = {
    movieList: [],
    isLoading: false,
    error: undefined,
    thongTinPhim: {},
+   listBanner: [],
 };
 // const history = useHistory()
 const quanLyPhimSlice = createSlice({
@@ -48,6 +51,10 @@ const quanLyPhimSlice = createSlice({
          .addCase(XoaPhim.fulfilled, (state, action) => {
             toast.success("Phim đã được xoá")
          })
+         .addCase(getbannerList.fulfilled, (state, action) => {
+            state.bannlist = action.payload;
+            state.isLoading = false;
+         });
    },
 });
 
