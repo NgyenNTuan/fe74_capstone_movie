@@ -73,7 +73,7 @@ const Router = () => {
                element: <AddNew />,
             },
             {
-               path: "/admin/create_calendar/:id",
+               path: "/admin/create_calendar/:nameFilm/:id",
                element: <Showtime />,
             },
             {

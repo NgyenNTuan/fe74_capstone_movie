@@ -194,7 +194,9 @@ const Film = () => {
               }
 
             ><i className="fa-regular fa-trash-can text-red-500"></i></div>
-            <NavLink key={3} className="mr-1 text-1xl text-blue-500 " to={`/admin/create_calendar/${film.maPhim}`}><i className="fa-regular fa-calendar"></i></NavLink>
+            <NavLink key={3} className="mr-1 text-1xl text-blue-500 " to={`/admin/create_calendar/${film.tenPhim}/${film.maPhim}`} onClick={() => {
+              localStorage.setItem('filmParam', JSON.stringify(film))
+            }}><i className="fa-regular fa-calendar"></i></NavLink>
           </div>
         </Fragment>
       },
