@@ -54,3 +54,14 @@ export const getShowtimeInfoTheater = createAsyncThunk(
       }
    }
 );
+export const createShowTimes1 = createAsyncThunk(
+   "quanLyRap/createShoTimes",
+   async (formData, { rejectWithValue }) => {
+      try {
+         const res = await quanLyRapServices.createShowTimes(formData);
+         return res.data.content;
+      } catch (error) {
+         return rejectWithValue("err: "+error.response?.data);
+      }
+   }
+);

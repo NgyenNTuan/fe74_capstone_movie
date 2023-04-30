@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { XoaPhim, capNhatPhim, getmovieList, layThongTinPhim, themPhimUploadHinh } from "./thunkAction";
+import { XoaPhim, capNhatPhim, getbannerList, getmovieList, layThongTinPhim, themPhimUploadHinh } from "./thunkAction";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 // import { useHistory } from "react-router-dom";
-import { getbannerList, getmovieList } from "./thunkAction";
+// import { getbannerList, getmovieList } from "./thunkAction";
 
 const initialState = {
    movieList: [],
@@ -18,7 +18,7 @@ const quanLyPhimSlice = createSlice({
    name: "quanLyPhim",
    initialState,
    reducers: {
-      
+
    },
    // xu ly cac action tao tu createAsyncThunk
    extraReducers: (builder) => {
@@ -34,10 +34,14 @@ const quanLyPhimSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
          })
+         //addFilm 
          .addCase(themPhimUploadHinh.fulfilled, (state, action) => {
             toast.success("Bạn đã thêm 1 bộ phim mới")
-
          })
+         .addCase(themPhimUploadHinh.rejected, (state, action) => {
+            toast.error("Thêm phim thất bại :((")
+         })
+         // getFilm
          .addCase(layThongTinPhim.fulfilled, (state, action) => {
             state.thongTinPhim = action.payload
          })

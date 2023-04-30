@@ -11,4 +11,6 @@ export const quanLyRapServices = {
 
    fetchShowtimeInfo: (query = "") =>
       http.get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${query}`),
+      
+   createShowTimes: (profileCalender = "") => http.post(`QuanLyDatVe/TaoLichChieu`, profileCalender)
 };

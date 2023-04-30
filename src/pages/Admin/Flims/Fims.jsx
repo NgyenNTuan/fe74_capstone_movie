@@ -9,8 +9,6 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { checkToken } from '../../../constant/api';
 import Search from 'antd/es/transfer/search';
 
-
-
 const Film = () => {
   checkToken()
   const dispatch = useDispatch()
@@ -33,7 +31,7 @@ const Film = () => {
     setSearchText('');
   };
   const onSearch = (value) => {
-    console.log(value);
+    // console.log(value);
   }
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
@@ -187,16 +185,16 @@ const Film = () => {
             <NavLink key={1} className="mr-1 text-1xl text-blue-500 " to={`/admin/edit/${film.maPhim}`}><i className="fa-solid fa-pen-to-square"></i></NavLink>
             <div key={2} className="mr-1 text-1xl  " style={{ cursor: 'pointer' }}
               onClick={
-                () => {
+                async () => {
                   if (window.confirm(`Bạn có muấn xoá bộ phim ${film.tenPhim}`)) {
-                    dispatch(XoaPhim(film.maPhim));
+                    await dispatch(XoaPhim(film.maPhim));
                     dispatch(getmovieList())
                   }
                 }
               }
 
             ><i className="fa-regular fa-trash-can text-red-500"></i></div>
-            <NavLink key={1} className="mr-1 text-1xl text-blue-500 " to={`/admin/create_calendar/${film.maPhim}`}><i class="fa-regular fa-calendar"></i></NavLink>
+            <NavLink key={3} className="mr-1 text-1xl text-blue-500 " to={`/admin/create_calendar/${film.maPhim}`}><i className="fa-regular fa-calendar"></i></NavLink>
           </div>
         </Fragment>
       },
