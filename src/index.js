@@ -16,7 +16,7 @@ const DOMAIN = 'https://movienew.cybersoft.edu.vn/'
 export const connection = new signalR.HubConnectionBuilder().withUrl(`${DOMAIN}DatVeHub`).configureLogging(signalR.LogLevel.Information).build();
 connection.start().then(function () {
    root.render(
-   <Provider store={store}>
+   <Provider store={store} >
       <StyleProvider hashPriority="high">
          <ToastMessage />
          <App />

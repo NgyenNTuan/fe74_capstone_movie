@@ -4,18 +4,21 @@ import { Button, Input, Space, Table } from 'antd';
 import { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { useDispatch, useSelector } from 'react-redux';
-import { getmovieList } from '../../../store/quanLyPhim/thunkAction';
+import { XoaPhim, getmovieList, layThongTinPhim } from '../../../store/quanLyPhim/thunkAction';
 import { NavLink, Outlet } from 'react-router-dom';
+import { checkToken } from '../../../constant/api';
+import Search from 'antd/es/transfer/search';
 
 
 
 const Film = () => {
+  checkToken()
   const dispatch = useDispatch()
   const { movieList } = useSelector((state) => state.quanLyPhim)
-  console.log("file: Fims.jsx:12 ~ Film ~ movieList:", movieList)
   useEffect(() => {
     dispatch(getmovieList())
   }, [dispatch])
+  // console.log(movieList);
   const data = movieList
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
@@ -29,6 +32,9 @@ const Film = () => {
     clearFilters();
     setSearchText('');
   };
+  const onSearch = (value) => {
+    console.log(value);
+  }
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
       <div
@@ -172,24 +178,38 @@ const Film = () => {
     {
       title: 'Hành động',
       dataIndex: 'hanhDong',
-      width: '10%',
+      width: '15%',
       key: 'maPhim',
       render: (text, film) => {
-        return <Fragment>
+
+        return <Fragment key={1}>
           <div className='flex justify-center items-center content-center'>
-            <NavLink className="mr-1 text-1xl text-blue-500 " to="/"><i class="fa-solid fa-pen-to-square"></i></NavLink>
-            <NavLink className="mr-1 text-1xl  " to="/"><i class="fa-regular fa-trash-can text-red-500"></i></NavLink>
+            <NavLink key={1} className="mr-1 text-1xl text-blue-500 " to={`/admin/edit/${film.maPhim}`}><i className="fa-solid fa-pen-to-square"></i></NavLink>
+            <div key={2} className="mr-1 text-1xl  " style={{ cursor: 'pointer' }}
+              onClick={
+                () => {
+                  if (window.confirm(`Bạn có muấn xoá bộ phim ${film.tenPhim}`)) {
+                    dispatch(XoaPhim(film.maPhim));
+                    dispatch(getmovieList())
+                  }
+                }
+              }
+
+            ><i className="fa-regular fa-trash-can text-red-500"></i></div>
+            <NavLink key={1} className="mr-1 text-1xl text-blue-500 " to={`/admin/create_calendar/${film.maPhim}`}><i class="fa-regular fa-calendar"></i></NavLink>
           </div>
         </Fragment>
       },
     },
   ];
   return (
-    
-    <div className='h-full'>
+
+    <div className='h-full' key={1}>
       <Outlet />
+
       <h3 className='text-2xl my-1 font-bold'>Quản lý films</h3>
-      <Button className='my-1'>Thêm phim +</Button>
+      <Search placeholder='Tìm kiếm phim !' onChange={onSearch()} />
+      <Button className='my-1'><NavLink to="/admin/film/addnew">Thêm phim +</NavLink></Button>
       <Table columns={columns} dataSource={data} />
     </div>
   )

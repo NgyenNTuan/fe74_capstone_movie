@@ -1,16 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getmovieList } from "./thunkAction";
-
+import { XoaPhim, capNhatPhim, getmovieList, layThongTinPhim, themPhimUploadHinh } from "./thunkAction";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
+// import { useHistory } from "react-router-dom";
 const initialState = {
    movieList: [],
    isLoading: false,
    error: undefined,
+   thongTinPhim: {},
 };
-
+// const history = useHistory()
 const quanLyPhimSlice = createSlice({
+
    name: "quanLyPhim",
    initialState,
-   reducers: {},
+   reducers: {
+      
+   },
    // xu ly cac action tao tu createAsyncThunk
    extraReducers: (builder) => {
       builder
@@ -24,7 +30,24 @@ const quanLyPhimSlice = createSlice({
          .addCase(getmovieList.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
-         });
+         })
+         .addCase(themPhimUploadHinh.fulfilled, (state, action) => {
+            toast.success("Bạn đã thêm 1 bộ phim mới")
+
+         })
+         .addCase(layThongTinPhim.fulfilled, (state, action) => {
+            state.thongTinPhim = action.payload
+         })
+         .addCase(capNhatPhim.fulfilled, (state, action) => {
+            toast.success("Bạn cập nhật phim thành công")
+         })
+         .addCase(capNhatPhim.rejected, (state, action) => {
+            toast.success("Cập nhật phim không thành công")
+         })
+
+         .addCase(XoaPhim.fulfilled, (state, action) => {
+            toast.success("Phim đã được xoá")
+         })
    },
 });
 

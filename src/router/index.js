@@ -9,11 +9,13 @@ import MovieDetail from "../pages/MovieDetail";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import User from "../pages/User";
+import User1 from "../pages/Admin/User/User";
 import CheckOut from "../pages/checkOut/CheckOut";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import Fims from "../pages/Admin/Flims/Fims";
-import Showtime from "../pages/Admin/Showtime/Showtime";
+import Showtime from "../pages/Admin/Flims/Showtime";
 import AddNew from "../pages/Admin/Flims/AddNew";
+import EditFilm from "../pages/Admin/Flims/EditFilm";
 
 const Router = () => {
    const elements = useRoutes([
@@ -61,7 +63,6 @@ const Router = () => {
          children: [
             {
                path: "/admin",
-               path: "/admin/users",
                element: <Dashboard />,
             },
             {
@@ -73,12 +74,16 @@ const Router = () => {
                element: <AddNew />,
             },
             {
-               path: "/admin/showtime",
+               path: "/admin/create_calendar/:id",
                element: <Showtime />,
             },
             {
-               path: "/admin/showtime",
-               element: <Showtime />,
+               path: "/admin/edit/:id",
+               element: <EditFilm />,
+            },
+            {
+               path: "/admin/user",
+               element: <User1 />,
             },
          ]
       },
