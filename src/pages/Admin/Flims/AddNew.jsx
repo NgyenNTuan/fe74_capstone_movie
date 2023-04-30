@@ -17,6 +17,7 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { themPhimUploadHinh } from '../../../store/quanLyPhim/thunkAction';
 import { useNavigate } from 'react-router';
+
 const AddNew = () => {
     const [componentSize, setComponentSize] = useState('default');
     const [imgSrc, setImgSrc] = useState('')
@@ -100,6 +101,7 @@ const AddNew = () => {
             }}
         >
             <h3 className='mb-1 text-2xl font-bold'>Thêm mới phim</h3>
+            
             <Form.Item label="Form Size" name="size">
                 <Radio.Group>
                     <Radio.Button value="small">Small</Radio.Button>

@@ -100,6 +100,10 @@ const Showtime = () => {
   //   // console.log(moment(values).format('DD/MM/YYYY hh:mm:ss'));
   //   // formik.setFieldTouched()
   // }
+  let film = {};
+  if(localStorage.getItem('filmParam')){
+    film = JSON.parse(localStorage.getItem('filmParam'));
+  }
   return (
     <Form
       labelCol={{
@@ -119,7 +123,8 @@ const Showtime = () => {
       }}
       onSubmitCapture={formik.handleSubmit}
     >
-      <h3 className='font-bold text-2xl mb-1'>Tạo lịch chiếu</h3>
+      <h3 className='font-bold text-2xl mb-1'>Tạo lịch chiếu - Phim: {film.tenPhim}</h3>
+      <img src={film?.hinhAnh} alt="" style={{width:"120px",height:"200px"}}/>
       <Form.Item label="Form Size" name="size">
         <Radio.Group>
           <Radio.Button value="small">Small</Radio.Button>
