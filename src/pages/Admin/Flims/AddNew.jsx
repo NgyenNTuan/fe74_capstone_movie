@@ -38,7 +38,7 @@ const AddNew = () => {
             hinhAnh: {},
             maNhom: "GP13"
         },
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             // 
             let formData = new FormData()
             for (let key in values) {
@@ -49,14 +49,14 @@ const AddNew = () => {
                 }
             }
             // console.log(formData.get("hinhAnh"));
-            dispatch(themPhimUploadHinh(formData))
-            navigate("/admin/film")
+            await dispatch(themPhimUploadHinh(formData))
+            navigate("/admin/film") 
         }
     })
     const handleChangeDatePicker = (value) => {
         // console.log(value);
         let ngayKhoiChieu = moment(value).format('DD/MM/YYYY');
-        // console.log(ngayKhoiChieu);
+        console.log(ngayKhoiChieu);
         formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu)
     }
     const handleChangeSwitch = (name) => {

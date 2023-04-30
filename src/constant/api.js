@@ -42,6 +42,12 @@ http.interceptors.response.use(
       if (error?.response?.status === 404) {
          toast.error(error.response?.data?.content);
       }
+      if (error?.response?.status === 500) {
+         toast.error(error.response?.data?.content);
+      }
+      if (error?.response?.status === 401) {
+         toast.error(error.response?.data?.content);
+      }
    }
 );
 

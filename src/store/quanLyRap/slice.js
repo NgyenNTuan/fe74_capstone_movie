@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getShowtimeInfo, getTheaterList } from "./thunkAction";
+import { createShowTimes1, getShowtimeInfo, getTheaterList } from "./thunkAction";
+import { toast } from "react-toastify";
 
 const initialState = {
    theaterList: [],
@@ -11,10 +12,14 @@ const quanLyRapSlice = createSlice({
    initialState,
    reducers: {},
    extraReducers: (builder) => {
-      builder.addCase(getTheaterList.fulfilled, (state, action) => {
-         state.theaterList = action.payload;
-      });
-   },
+      builder
+         .addCase(getTheaterList.fulfilled, (state, action) => {
+            state.theaterList = action.payload;
+         })
+         .addCase(createShowTimes1.fulfilled, (state, action) => {
+             toast.success("Tạo lịch phim thành công")
+         });
+},
 });
 
 export const quanLyRapReducer = quanLyRapSlice.reducer;

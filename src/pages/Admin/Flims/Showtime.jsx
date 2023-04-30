@@ -11,28 +11,95 @@ import {
   TreeSelect,
 } from 'antd';
 import { useEffect, useState } from 'react';
-// import { quanLyRapService } from '../../../services/quanlyRapService';
+import { quanLyRapServices } from '../../../services/quanLyRap.servies';
+import { useFormik } from 'formik';
+import { useNavigate, useParams } from 'react-router';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { checkToken } from '../../../constant/api';
+import { createShowTimes1 } from '../../../store/quanLyRap/thunkAction';
 
 const Showtime = () => {
-  const { state, setState } = useState({
-    heThongRapChieu: [],
-    cumRapChieu: []
-  })
-  useEffect(async () => {
-    try {
-      // let result = await quanLyRapService.layDanhSachHeThongRap();
+  checkToken()
+  const param = useParams()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const formik = useFormik({
+    initialValues: {
+      maPhim: Number(param?.id),
+      ngayChieuGioChieu: '',
+      maRap: '',
+      giaVe: '',
+    },
+    onSubmit: async (values) => {
+      // console.log(values);
 
-    } catch (error) {
-      
+      await dispatch(createShowTimes1(values))
+      navigate("/admin/film")
     }
+  })
+  const [state, setState] = useState({
+    heThongRapChieu: [],
+    cumRapChieu: [],
+  })
+  useEffect(() => {
+    const asyncFn = async () => {
+      try {
+        let result = await quanLyRapServices.getTheaterList();
+        setState({
+          ...state,
+          heThongRapChieu: result.data.content
+        })
+      } catch (error) {
+        console.log("err: " + error);
+      }
+    }
+    asyncFn()
   }, [])
   const [componentSize, setComponentSize] = useState('default');
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
-  const handleChangeHeThongRap = () => {
+  const handleChangeHeThongRap = async (values) => {
+
+    try {
+      let result = await quanLyRapServices.fetchGroupTheater(values);
+      // console.log(result.data.content);
+      setState({
+        ...state,
+        cumRapChieu: result.data.content,
+      })
+    } catch (error) {
+      console.log("err: " + error);
+    }
+  }
+  const handleChangeCumRap = (values) => {
+    console.log(values[0]);
+    formik.setFieldValue("maRap", String(values[0]))
+  }
+  const SelectorHTR = () => {
+    return state.heThongRapChieu?.map((htr, index) => {
+      return { label: htr.tenHeThongRap, value: htr.maHeThongRap }
+    })
+  }
+  const SelectorCumRap = () => {
+    return state.cumRapChieu?.map((cumRap, index) => {
+      return { label: cumRap.tenCumRap, value: cumRap.maCumRap }
+    })
+  }
+  const onChangeDate = (values) => {
+    formik.setFieldValue('ngayChieuGioChieu', moment(values).format('DD/MM/YYYY hh:mm:ss'))
+    // console.log(values.$d);
 
   }
+  const onChangeInputNumber = (values) => {
+    formik.setFieldValue('giaVe', values)
+  }
+  // const onOk = (values) => {
+  //   formik.setFieldValue('ngayChieuGioChieu', values?.$d)
+  //   // console.log(moment(values).format('DD/MM/YYYY hh:mm:ss'));
+  //   // formik.setFieldTouched()
+  // }
   return (
     <Form
       labelCol={{
@@ -49,7 +116,8 @@ const Showtime = () => {
       size={componentSize}
       style={{
         maxWidth: 1200,
-      }} mb-1
+      }}
+      onSubmitCapture={formik.handleSubmit}
     >
       <h3 className='font-bold text-2xl mb-1'>Tạo lịch chiếu</h3>
       <Form.Item label="Form Size" name="size">
@@ -61,46 +129,26 @@ const Showtime = () => {
       </Form.Item>
       <Form.Item label="Hệ thống rạp">
         <Cascader
-          options={[
-            {
-              value: 'AAA',
-              label: 'AAA',
-            },
-            {
-              value: "BBB",
-              label: "BBB"
-            }
-          ]}
+          options={SelectorHTR()}
+          onChange={handleChangeHeThongRap}
           placeholder="Chọn hệ thống rạp"
         />
       </Form.Item>
       <Form.Item label="Cụm rạp">
         <Cascader
-          options={[
-            {
-              value: 'AAA',
-              label: 'AAA',
-            },
-            {
-              value: "BBB",
-              label: "BBB"
-            }
-          ]}
+          options={SelectorCumRap()}
+          onChange={handleChangeCumRap}
           placeholder="Chọn cụm rạp"
-          onChange={handleChangeHeThongRap}
         />
       </Form.Item>
       <Form.Item label="Ngày chiếu, giờ chiếu">
-        <DatePicker />
+        <DatePicker format="DD/MM/YYYY hh:mm:ss" showTime onChange={onChangeDate} />
       </Form.Item>
       <Form.Item label="Giá vé">
-        <InputNumber min={75000} max={150000} />
-      </Form.Item>
-      <Form.Item label="">
-        <DatePicker />
+        <InputNumber min={75000} max={150000} onChange={onChangeInputNumber} />
       </Form.Item>
       <Form.Item label="Button">
-        <Button>Tạo lịch chiếu</Button>
+        <Button htmlType='submit'>Tạo lịch chiếu</Button>
       </Form.Item>
     </Form>
   );
