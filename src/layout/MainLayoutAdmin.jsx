@@ -23,7 +23,7 @@ const Dashboard = () => {
             toast.error("Bạn không có quền truy cập vào trang admin");
             return (navigate("/home"))
         }
-        if (user.maLoaiNguoiDung !== "QuanTri"){
+        if (user.maLoaiNguoiDung !== "QuanTri") {
             toast.error("Bạn không có quền truy cập vào trang admin");
             return (navigate("/home"))
         }
@@ -48,8 +48,10 @@ const Dashboard = () => {
                         defaultOpenKeys={['sub1']}
                         style={{ height: '100%', borderRight: 0 }}
                     >
-                        <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                           
+                        <SubMenu key="sub4" icon={<i className="fa-solid fa-pen-to-square"></i>} title="User">
+                            <Menu.Item key="5">
+                                <NavLink to="/admin/user">Profile User</NavLink>
+                            </Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" icon={<UserOutlined />} title="Film">
                             <Menu.Item key="2">
@@ -60,7 +62,7 @@ const Dashboard = () => {
                             </Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub3" icon={<UserOutlined />} title="Show time">
-    
+
                             <Menu.Item key="3">
                                 <NavLink to="/admin/showtime">Showtimes</NavLink>
                             </Menu.Item>
