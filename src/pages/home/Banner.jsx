@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Carousel } from "antd";
 import { quanLyPhimServices } from "../../services/quanLyPhim.services";
 import { useDispatch } from "react-redux";
+import "./banner.css";
 
 const contentStyle = {
    height: "100vh",

@@ -1,3 +1,20 @@
+.slick-prev {
+   z-index: 20 !important;
+}
+
+.slick-next::before,
+.slick-prev::before {
+   font-size: 5rem !important;
+}
+
+.slick-slide {
+   opacity: 0;
+}
+
+.slick-slide.slick-active {
+   opacity: 1;
+}
+
 .title-list {
    text-align: center;
    color: #d9733f;
@@ -51,6 +68,11 @@
 
 .movie-name {
    transition: all 0.5s;
+}
+
+.movie-item {
+   width: 100% !important;
+   height: 600px;
 }
 
 .movie-item:hover .movie-overlay {

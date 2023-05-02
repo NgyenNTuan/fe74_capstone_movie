@@ -6,11 +6,12 @@ export const quanLyRapServices = {
    fetchGroupTheater: (query = "") =>
       http.get(`QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${query}`),
 
-   fetchShowtimeInfoTheater: (query) =>
+   fetchShowtimeTheaterSystem: (query) =>
       http.get(`QuanLyRap/LayThongTinLichChieuHeThongRap${query}`),
 
    fetchShowtimeInfo: (query = "") =>
       http.get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${query}`),
-      
-   createShowTimes: (profileCalender = "") => http.post(`QuanLyDatVe/TaoLichChieu`, profileCalender)
+
+   createShowTimes: (profileCalender = "") =>
+      http.post(`QuanLyDatVe/TaoLichChieu`, profileCalender),
 };
