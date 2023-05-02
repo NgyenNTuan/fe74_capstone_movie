@@ -7,6 +7,9 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { StyleProvider } from "@ant-design/cssinjs";
 import { ToastMessage } from "./module/ToastMessage";
+// slick
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./i18next.js";
 // realTime
 import * as signalR from "@aspnet/signalr";

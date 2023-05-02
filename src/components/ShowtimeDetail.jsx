@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getShowtimeInfo } from "../store/quanLyRap/thunkAction";
 import { quanLyRapServices } from "../services/quanLyRap.servies";
+import moment from "moment";
 
 const ShowtimeDetail = () => {
    const [showtimeInfo, setShowtimeInfo] = useState();
@@ -70,9 +71,11 @@ const ShowtimeDetail = () => {
                                                          `/checkout/${i.maLichChieu}`
                                                       );
                                                    }}
-                                                   className="bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded mr-1"
+                                                   className="bg-gray-100 hover:bg-gray-200 hover:text-orange-400 text-black font-bold py-2 px-4 rounded mr-1"
                                                 >
-                                                   {i.ngayChieuGioChieu}
+                                                   {moment(
+                                                      i.ngayChieuGioChieu
+                                                   ).format("hh:mm A")}
                                                 </button>
                                              );
                                           })}

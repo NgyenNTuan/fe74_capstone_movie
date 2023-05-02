@@ -40,12 +40,12 @@ export const getShowtimeInfo = createAsyncThunk(
    }
 );
 
-export const getShowtimeInfoTheater = createAsyncThunk(
+export const getShowtimeTheaterSystem = createAsyncThunk(
    "quanLyRap/getShowtimeInfoTheater",
    async (payload, { rejectWithValue }) => {
       try {
-         const res = await quanLyRapServices.fetchShowtimeInfoTheater(
-            "?maHeThongRap=BHDStar&maNhom=GP13"
+         const res = await quanLyRapServices.fetchShowtimeTheaterSystem(
+            "?maNhom=GP13"
          );
 
          return res.data.content;
@@ -54,6 +54,7 @@ export const getShowtimeInfoTheater = createAsyncThunk(
       }
    }
 );
+
 export const createShowTimes1 = createAsyncThunk(
    "quanLyRap/createShoTimes",
    async (formData, { rejectWithValue }) => {
@@ -61,7 +62,7 @@ export const createShowTimes1 = createAsyncThunk(
          const res = await quanLyRapServices.createShowTimes(formData);
          return res.data.content;
       } catch (error) {
-         return rejectWithValue("err: "+error.response?.data);
+         return rejectWithValue("err: " + error.response?.data);
       }
    }
 );
