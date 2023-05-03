@@ -27,7 +27,6 @@ const quanLyRapSlice = createSlice({
          })
          .addCase(getShowtimeTheaterSystem.fulfilled, (state, action) => {
             state.theaterSystemGroup = action.payload;
-            console.log(state.theaterSystemGroup);
          });
    },
 });

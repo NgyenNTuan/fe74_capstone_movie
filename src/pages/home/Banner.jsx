@@ -4,14 +4,6 @@ import { quanLyPhimServices } from "../../services/quanLyPhim.services";
 import { useDispatch } from "react-redux";
 import "./banner.css";
 
-const contentStyle = {
-   height: "100vh",
-   color: "#fff",
-   lineHeight: "160px",
-   textAlign: "center",
-   background: "#364d79",
-};
-
 const Banner = () => {
    const [bannerList, setBannerList] = useState([]);
    const dispatch = useDispatch();
@@ -32,13 +24,16 @@ const Banner = () => {
          {bannerList.map((banner) => {
             return (
                <div key={banner.maBanner}>
-                  <div style={contentStyle}>
-                     <img
-                        src={banner.hinhAnh}
-                        alt=""
-                        style={{ width: "100%" }}
-                     />
-                  </div>
+                  <div
+                     className="banner"
+                     style={{
+                        backgroundImage: `url(${banner.hinhAnh})`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        width: "100%",
+                     }}
+                  ></div>
                </div>
             );
          })}
