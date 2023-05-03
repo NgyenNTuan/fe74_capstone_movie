@@ -43,7 +43,7 @@ const Home = () => {
 
          <div className="pt-3 z-10 relative">
             <h3 className="title-list">ĐANG CHIẾU</h3>
-            <section className="text-gray-600 body-font w-4/5 m-auto">
+            <section className="text-gray-600 body-font lg:w-4/5 m-auto">
                <MultipleRows movieList={movieList} />
             </section>
          </div>

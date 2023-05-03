@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { quanLyNguoiDungActions } from "../store/quanLyNguoiDung/slice";
@@ -11,6 +11,7 @@ import { useScrollDirection } from "./scrollDirection";
 const Header = () => {
    const { t, i18n } = useTranslation();
    const navigate = useNavigate();
+   const ref = useRef(null);
 
    const dispatch = useDispatch();
 
@@ -38,12 +39,15 @@ const Header = () => {
                   icon="fa-solid fa-film"
                />
             </NavLink>
-            <ul className="items-stretch hidden space-x-3 lg:flex">
+            <ul
+               ref={ref}
+               className="items-stretch hidden space-x-3 lg:flex header-mobile"
+            >
                <li className="flex nav--item">
                   <NavLink
                      rel="noopener noreferrer"
                      to="/home"
-                     className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:text-orange-400"
+                     className="flex items-center px-4 -mb-1 dark:border-transparent hover:text-orange-400"
                   >
                      HOME
                   </NavLink>
@@ -52,7 +56,7 @@ const Header = () => {
                   <NavLink
                      rel="noopener noreferrer"
                      to="/showing-movies"
-                     className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:text-orange-400 "
+                     className="flex items-center px-4 -mb-1 dark:border-transparent hover:text-orange-400 "
                   >
                      SHOWING MOVIES
                   </NavLink>
@@ -61,7 +65,7 @@ const Header = () => {
                   <NavLink
                      rel="noopener noreferrer"
                      to="/coming-movies"
-                     className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:text-orange-400 "
+                     className="flex items-center px-4 -mb-1 dark:border-transparent hover:text-orange-400 "
                   >
                      COMING MOVIES
                   </NavLink>
@@ -70,7 +74,7 @@ const Header = () => {
                   <NavLink
                      rel="noopener noreferrer"
                      to="/about"
-                     className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent hover:text-orange-400 "
+                     className="flex items-center px-4 -mb-1 dark:border-transparent hover:text-orange-400 "
                   >
                      ABOUT
                   </NavLink>
@@ -82,7 +86,7 @@ const Header = () => {
                         width: 120,
                         display: "flex",
                      }}
-                     className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent"
+                     className="flex items-center px-4 -mb-1 dark:border-transparent"
                      onChange={handleChange}
                      options={[
                         {
@@ -127,14 +131,26 @@ const Header = () => {
 
                         navigate("/login");
                      }}
-                     className="self-center px-8 py-3 font-semibold rounded dark:bg-orange-400 dark:text-gray-900"
+                     className="self-center px-8 py-3 font-semibold rounded bg-orange-400 text-gray-900"
                   >
                      Logout
                   </button>
                </div>
             )}
 
-            <button className="p-4 lg:hidden">
+            <button
+               onClick={() => {
+                  const element = ref.current;
+                  console.log(element.style.display);
+
+                  if (element.style.display !== "none") {
+                     element.style.display = "none";
+                  } else {
+                     element.style.display = "flex";
+                  }
+               }}
+               className="p-4 lg:hidden"
+            >
                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
