@@ -44,8 +44,23 @@
    }
 }
 
+.ant-tabs {
+   color: white;
+}
 .ant-tabs-ink-bar {
    background-color: #d9733f !important;
+}
+
+.ant-tabs-nav::before {
+   border-bottom: unset !important;
+}
+
+.css-dev-only-do-not-override-1vtf12y.ant-tabs .ant-tabs-tab:hover {
+   color: #d9733f !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+   color: #d9733f !important;
 }
 
 .detail {
