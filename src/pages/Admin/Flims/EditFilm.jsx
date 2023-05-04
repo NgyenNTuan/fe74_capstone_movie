@@ -153,9 +153,10 @@ const EditFilm = () => {
                 <input type='file' onChange={handleChangeFile} accept='image/jpeg,image/jpg,image/gif,image/png ' />
                 <img className='my-1' style={{ width: "120px", height: "170px" }} src={imgSrc === "" ? thongTinPhim?.hinhAnh : imgSrc} alt='...' />
             </Form.Item>
-            <Form.Item label="">
-                <button type='submit' className='bg-blue-300'>Cập nhật</button>
-            </Form.Item>
+
+            <div className='text-right w-full'>
+                <button type='submit' className='bg-green-500 text-white font-bold  p-2  rounded-md  transition duration-300 scale-95 hover:scale-105'>Cập nhật</button>
+            </div>
         </Form >
     );
 }

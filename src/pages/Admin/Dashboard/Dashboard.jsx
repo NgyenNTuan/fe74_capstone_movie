@@ -12,7 +12,7 @@ const { Header, Sider, Content } = Layout;
 const Dashboard = () => {
     const [collapsed, setCollapsed] = useState(false);
     return (
-        <div>Dashboard</div>
+        <div>Wecome to admin movie flim</div>
     )
 }
 

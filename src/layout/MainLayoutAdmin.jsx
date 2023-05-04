@@ -9,7 +9,36 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import './../pages/CSS/admin.css'
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import { Dropdown, Space } from 'antd';
+import { quanLyNguoiDungActions } from '../store/quanLyNguoiDung/slice';
 const Dashboard = () => {
+    // dropdow heder
+    const items = [
+        {
+            label: (
+                <button
+                    onClick={() => {
+                        dispatch(quanLyNguoiDungActions.logOut());
+
+                        navigate("/login");
+                    }}
+                    className="pr-8"
+                >
+                    Đăng xuất
+                </button>
+            ),
+            key: '0',
+        },
+        {
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+                    2nd menu item
+                </a>
+            ),
+            key: '1',
+        }
+    ];
+    
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {
@@ -29,7 +58,7 @@ const Dashboard = () => {
         }
     }, [])
     return (
-        <Layout>
+        <Layout className='h-full'>
 
             <Layout>
                 <Sider breakpoint="lg"
@@ -46,7 +75,7 @@ const Dashboard = () => {
                         mode="inline"
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
-                        style={{ height: '100%', borderRight: 0 }}
+                        style={{ height: '80%', borderRight: 0 }}
                     >
                         <SubMenu key="sub4" icon={<i className="fa-solid fa-pen-to-square"></i>} title="User">
                             <Menu.Item key="5">
@@ -71,9 +100,20 @@ const Dashboard = () => {
                     </Menu>
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
-                    <Header style={{ padding: 0, background: colorBgContainer }} />
+                    <Header style={{ padding: 0, background: colorBgContainer }} >
+                        <div className='flex justify-end mr-5'>
+                            <p className='mt-3 mr-2 rounded-full bg-red-500' style={{ width: "30px", height: "30px" }}></p>
+                            <Dropdown
+                                menu={{
+                                    items,
+                                }}
+                            >
+                                <p>Xin chào, <span className='font-bold'>{user.taiKhoan}</span></p>
+                            </Dropdown>
+
+                        </div>
+                    </Header>
                     <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
                     </Breadcrumb>
                     <Content>
                         <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>

@@ -208,7 +208,7 @@ const Film = () => {
       <Outlet />
 
       <h3 className='text-2xl my-1 font-bold'>Quản lý films</h3>
-      <Search placeholder='Tìm kiếm phim !' onChange={onSearch()} />
+      {/* <Search placeholder='Tìm kiếm phim !' onChange={onSearch()} /> */}
       <Button className='my-1'><NavLink to="/admin/film/addnew">Thêm phim +</NavLink></Button>
       <Table columns={columns} dataSource={data} />
     </div>
