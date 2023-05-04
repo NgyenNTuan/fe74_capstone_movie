@@ -11,7 +11,8 @@ import { layThongTinNguoiDung } from "../../store/quanLyNguoiDung/thunkAction";
 import moment from "moment/moment";
 import { connection } from "../../index";
 import { checkToken } from "../../constant/api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CheckOut = () => {
    const dispatch = useDispatch();
@@ -24,7 +25,13 @@ const CheckOut = () => {
    } = useSelector((state) => state.quanLyDatVe);
    checkToken();
    const param = useParams();
+   const navigate = useNavigate()
    useEffect(() => {
+      
+      if (!localStorage.getItem("user")) {
+         toast.error("Bạn chưa có tài khoản vui lòng đăng nhập để đặt vé");
+         return (navigate("/login"))
+      }
       dispatch(getDatVe(param.id));
       // Load ds ghế đặt từ server
       connection.on("loadDanhSachGheDaDat", (dsDatGhe) => {
@@ -34,7 +41,6 @@ const CheckOut = () => {
       });
    }, [dispatch]);
    const { thongTinPhim, danhSachGhe } = chiTietPhongVe;
-
    const renderSeats = () => {
       return danhSachGhe.map((ghe, index) => {
          let classGheVip = ghe.loaiGhe === "Vip" ? "gheVip" : "";
@@ -210,12 +216,12 @@ const CheckOut = () => {
                   <hr />
                   <div className="my-0.5">
                      <i>Email</i> <br />
-                     {user.email}
+                     {user?.email}
                   </div>
                   <hr />
                   <div className="my-0.5">
                      <i>Phone</i> <br />
-                     {user.soDT}
+                     {user?.soDT}
                   </div>
                   <hr />
                   <div className="my-0.5">
@@ -254,40 +260,49 @@ const KetQuaDatVe = () => {
    }, [thongTinNguoiDung]);
 
    const renderTickedItem = () => {
-      return thongTinNguoiDung.thongTinDatVe?.map((ticked, index) => {
-         const ghe = [];
-         ticked.danhSachGhe.map((tenGhe) => {
-            ghe.push(" [" + tenGhe.tenGhe + "] ");
-         });
-         const seats = _.first(ticked.danhSachGhe);
+      if (thongTinNguoiDung.thongTinDatVe == "") {
          return (
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full " key={index}>
-               <div className="h-full flex items-center bg-r01 border-gray-200 border p-4 rounded-lg">
-                  <img
-                     alt="team"
-                     className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                     src={ticked.hinhAnh}
-                  />
-                  <div className="flex-grow ">
-                     <h2 className="text-white title-font font-medium">
-                        {ticked.tenPhim}
-                     </h2>
-                     <p className="text-white">
-                        Giờ chiếu: {moment(ticked.ngatDat).format("hh:mm A")} -
-                        Ngày chiếu {moment(ticked.ngatDat).format("DD-MM-YYYY")}
-                     </p>
-                     <p className="text-white">
-                        Địa điểm: {seats.tenHeThongRap}
-                     </p>
-                     <p className="text-white">
-                        Tên rập: {seats.tenCumRap} - Ghế:{" "}
-                        <span className="letter text-orange-100">{ghe}</span>
-                     </p>
+            <div className="text-center">
+               <p className="text-white" > Tài khoản này hiện chưa có thông tin đặt vé </p>
+            </div>
+         )
+      } else {
+         return thongTinNguoiDung.thongTinDatVe?.map((ticked, index) => {
+
+            const ghe = [];
+            ticked.danhSachGhe.map((tenGhe) => {
+               ghe.push(" [" + tenGhe.tenGhe + "] ");
+            });
+            const seats = _.first(ticked.danhSachGhe);
+            return (
+               <div className="p-2 lg:w-1/3 md:w-1/2 w-full " key={index}>
+                  <div className="h-full flex items-center bg-r01 border-gray-200 border p-4 rounded-lg">
+                     <img
+                        alt="team"
+                        className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                        src={ticked.hinhAnh}
+                     />
+                     <div className="flex-grow ">
+                        <h2 className="text-white title-font font-medium">
+                           {ticked.tenPhim}
+                        </h2>
+                        <p className="text-white">
+                           Giờ chiếu: {moment(ticked.ngatDat).format("hh:mm A")} -
+                           Ngày chiếu {moment(ticked.ngatDat).format("DD-MM-YYYY")}
+                        </p>
+                        <p className="text-white">
+                           Địa điểm: {seats.tenHeThongRap}
+                        </p>
+                        <p className="text-white">
+                           Tên rập: {seats.tenCumRap} - Ghế:{" "}
+                           <span className="letter text-orange-100">{ghe}</span>
+                        </p>
+                     </div>
                   </div>
                </div>
-            </div>
-         );
-      });
+            );
+         });
+      }
    };
    if (isLoading) {
       return (
@@ -322,7 +337,7 @@ const KetQuaDatVe = () => {
       );
    }
    return (
-      <div className="max-w-screen-xl  mx-auto">
+      <div className="max-w-screen-xl  mx-auto mb-40">
          <section className="text-gray-600 body-font">
             <div className="container px-1 py-1 mx-auto">
                <div className="flex flex-col text-center w-full mb-5">

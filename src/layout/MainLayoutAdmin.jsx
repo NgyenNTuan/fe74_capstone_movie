@@ -38,7 +38,7 @@ const Dashboard = () => {
             key: '1',
         }
     ];
-    
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {
@@ -52,7 +52,7 @@ const Dashboard = () => {
             toast.error("Bạn không có quền truy cập vào trang admin");
             return (navigate("/home"))
         }
-        if (user.maLoaiNguoiDung !== "QuanTri") {
+        if (user?.maLoaiNguoiDung !== "QuanTri") {
             toast.error("Bạn không có quền truy cập vào trang admin");
             return (navigate("/home"))
         }
@@ -69,7 +69,7 @@ const Dashboard = () => {
                     onCollapse={(collapsed, type) => {
                         console.log(collapsed, type);
                     }}>
-                    <div className="logo bg-white">LoGo</div>
+                    <div className="logo bg-white text-orange-400">Movies Film</div>
                     <Menu
                         theme="dark"
                         mode="inline"
@@ -77,23 +77,17 @@ const Dashboard = () => {
                         defaultOpenKeys={['sub1']}
                         style={{ height: '80%', borderRight: 0 }}
                     >
-                        <SubMenu key="sub4" icon={<i className="fa-solid fa-pen-to-square"></i>} title="User">
+                        <SubMenu key="sub4" icon={<i className="fa-solid fa-user"></i>} title="User">
                             <Menu.Item key="5">
                                 <NavLink to="/admin/user">Profile User</NavLink>
                             </Menu.Item>
                         </SubMenu>
-                        <SubMenu key="sub2" icon={<UserOutlined />} title="Film">
+                        <SubMenu key="sub2" icon={<i className="fa-solid fa-film"></i>} title="Film">
                             <Menu.Item key="2">
                                 <NavLink to="/admin/film">Films</NavLink>
                             </Menu.Item>
                             <Menu.Item key="4">
                                 <NavLink to="/admin/film/addnew">Thêm Film</NavLink>
-                            </Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub3" icon={<UserOutlined />} title="Show time">
-
-                            <Menu.Item key="3">
-                                <NavLink to="/admin/showtime">Showtimes</NavLink>
                             </Menu.Item>
                         </SubMenu>
 
@@ -108,7 +102,7 @@ const Dashboard = () => {
                                     items,
                                 }}
                             >
-                                <p>Xin chào, <span className='font-bold'>{user.taiKhoan}</span></p>
+                                <p>Xin chào, <span className='font-bold'>{user?.taiKhoan}</span></p>
                             </Dropdown>
 
                         </div>

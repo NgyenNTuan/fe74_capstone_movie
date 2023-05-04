@@ -2,5 +2,9 @@
     "hello":"Xin chào",
     "singin":"Đăng nhập",
     "signup":"Đăng ký",
-    "logout":"Đăng xuất"
+    "logout":"Đăng xuất",
+    "home":"Trang chủ",
+    "showingmovies":"Chiếu phim",
+    "comingmovies":"Phim sắp tới",
+    "about":"Về chúng tôi"
 }

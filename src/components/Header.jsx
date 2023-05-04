@@ -24,9 +24,8 @@ const Header = () => {
 
    return (
       <header
-         className={`fixed ${
-            scrollDirection === "down" ? "-top-28" : "top-0"
-         } p-1 bg-gray-900 text-gray-100 bg-opacity-40 w-full z-50`}
+         className={`fixed ${scrollDirection === "down" ? "-top-28" : "top-0"
+            } p-1 bg-gray-900 text-gray-100 bg-opacity-40 w-full z-50`}
       >
          <div className="container flex justify-between h-16 mx-auto">
             <NavLink
@@ -49,7 +48,7 @@ const Header = () => {
                      to="/home"
                      className="flex items-center px-4 -mb-1 dark:border-transparent hover:text-orange-400"
                   >
-                     HOME
+                     {t('home')}
                   </NavLink>
                </li>
                <li className="flex nav--item">
@@ -58,7 +57,7 @@ const Header = () => {
                      to="/showing-movies"
                      className="flex items-center px-4 -mb-1 dark:border-transparent hover:text-orange-400 "
                   >
-                     SHOWING MOVIES
+                     {t('showingmovies')}
                   </NavLink>
                </li>
                <li className="flex nav--item">
@@ -67,7 +66,7 @@ const Header = () => {
                      to="/coming-movies"
                      className="flex items-center px-4 -mb-1 dark:border-transparent hover:text-orange-400 "
                   >
-                     COMING MOVIES
+                     {t('comingmovies')}
                   </NavLink>
                </li>
                <li className="flex nav--item">
@@ -76,7 +75,7 @@ const Header = () => {
                      to="/about"
                      className="flex items-center px-4 -mb-1 dark:border-transparent hover:text-orange-400 "
                   >
-                     ABOUT
+                     {t('about')}
                   </NavLink>
                </li>
                <li className="flex">
@@ -108,10 +107,10 @@ const Header = () => {
             {!!!user && (
                <div className="items-center flex-shrink-0 hidden lg:flex">
                   <button className="self-center px-8 py-3 rounded hover:text-orange-400">
-                     <NavLink to="/login">Login</NavLink>
+                     <NavLink to="/login">{t('singin')}</NavLink>
                   </button>
                   <button className="self-center px-8 py-3 font-semibold rounded dark:bg-orange-400 dark:text-gray-900 hover:text-white">
-                     <NavLink to="/register">Register</NavLink>
+                     <NavLink to="/register">{t('signup')}</NavLink>
                   </button>
                </div>
             )}
@@ -123,7 +122,7 @@ const Header = () => {
                      }}
                      className="cursor-pointer self-center px-8 py-3 rounded hover:text-orange-400"
                   >
-                     Hello {user.taiKhoan}
+                     {t('hello')}, <span className="font-bold">{user.taiKhoan}</span>
                   </p>
                   <button
                      onClick={() => {
@@ -133,7 +132,7 @@ const Header = () => {
                      }}
                      className="self-center px-8 py-3 font-semibold rounded bg-orange-400 text-gray-900"
                   >
-                     Logout
+                     {t('logout')}
                   </button>
                </div>
             )}
