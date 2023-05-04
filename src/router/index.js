@@ -1,5 +1,5 @@
 import React from "react";
-import { useRoutes } from "react-router-dom";
+import { useRoutes, Navigate } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import MainLayoutAdmin from "../layout/MainLayoutAdmin";
 import Home from "../pages/home/Home";
@@ -19,6 +19,7 @@ import EditFilm from "../pages/Admin/Flims/EditFilm";
 import EditUser from "../pages/Admin/User/EditUser";
 import AddUser from "../pages/Admin/User/AddUser";
 import BookTickets from "../pages/Admin/User/BookTickets";
+import PageNotFound from "../pages/PageNotFound";
 
 const Router = () => {
    const elements = useRoutes([
@@ -101,6 +102,14 @@ const Router = () => {
                element: <BookTickets />,
             },
          ],
+      },
+      {
+         path: "*",
+         element: <Navigate to="/404" />,
+      },
+      {
+         path: "/404",
+         element: <PageNotFound />,
       },
    ]);
    return elements;
