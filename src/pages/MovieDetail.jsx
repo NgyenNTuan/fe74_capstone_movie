@@ -23,17 +23,17 @@ const MovieDetail = () => {
    const items = [
       {
          key: "1",
-         label: `TỔNG QUAN`,
+         label: <p className="text-white">TỔNG QUAN</p>,
          children: `OVERVIEW`,
       },
       {
          key: "2",
-         label: `ĐÁNH GIÁ`,
+         label: <p className="text-white">ĐÁNH GIÁ</p>,
          children: `REVIEW`,
       },
       {
          key: "3",
-         label: `LỊCH CHIẾU`,
+         label: <p className="text-white">LỊCH CHIẾU</p>,
          children: <ShowtimeDetail />,
       },
    ];

@@ -18,6 +18,7 @@ import { checkToken } from '../../../constant/api';
 import { layThongTinNguoiDungByID, themNguoiDungAdmin, upDateThongTinUser } from '../../../store/quanLyNguoiDung/thunkAction';
 const AddUser = () => {
     checkToken()
+    const navigate = useNavigate()
     const [componentSize, setComponentSize] = useState('default');
     const dispatch = useDispatch()
     const onFormLayoutChange = ({ size }) => {
@@ -36,7 +37,7 @@ const AddUser = () => {
         },
         onSubmit: async (values) => {
             await dispatch(themNguoiDungAdmin(values))
-            // navigate("/admin/user")
+            navigate("/admin/user")
         }
     })
     const handleMaLoaiNguoiDung = (valuse) => {

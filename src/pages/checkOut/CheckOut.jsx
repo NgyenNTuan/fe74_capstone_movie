@@ -27,7 +27,7 @@ const CheckOut = () => {
    const param = useParams();
    const navigate = useNavigate()
    useEffect(() => {
-      
+
       if (!localStorage.getItem("user")) {
          toast.error("Bạn chưa có tài khoản vui lòng đăng nhập để đặt vé");
          return (navigate("/login"))
@@ -357,12 +357,12 @@ const KetQuaDatVe = () => {
 const items = [
    {
       key: "1",
-      label: `01 CHỌN GHẾ THANH TOÁN`,
+      label: <p className="text-white">01 CHỌN GHẾ THANH TOÁN</p>,
       children: <CheckOut />,
    },
    {
       key: "2",
-      label: `02 KẾT QUẢ ĐẶT VÉ`,
+      label: <p className="text-white">02 KẾT QUẢ ĐẶT VÉ</p>,
       children: <KetQuaDatVe />,
    },
 ];

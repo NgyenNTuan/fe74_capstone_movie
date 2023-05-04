@@ -141,7 +141,7 @@ tr>th {
 }
 
 .css-dev-only-do-not-override-1vtf12y.ant-tabs .ant-tabs-tab-btn {
-    color: #fff;
+    color: #fff !important;
 
 }
 
