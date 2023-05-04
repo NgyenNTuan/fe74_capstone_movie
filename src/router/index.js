@@ -16,6 +16,10 @@ import Showtime from "../pages/Admin/Flims/Showtime";
 import AddNew from "../pages/Admin/Flims/AddNew";
 import EditFilm from "../pages/Admin/Flims/EditFilm";
 
+import EditUser from "../pages/Admin/User/EditUser";
+import AddUser from "../pages/Admin/User/AddUser";
+import BookTickets from "../pages/Admin/User/BookTickets";
+
 const Router = () => {
    const elements = useRoutes([
       {
@@ -83,6 +87,18 @@ const Router = () => {
             {
                path: "/admin/user",
                element: <User1 />,
+            },
+            {
+               path: "/admin/user/edit/:id",
+               element: <EditUser />,
+            },
+            {
+               path: "/admin/user/add",
+               element: <AddUser />,
+            },
+            {
+               path: "/admin/user/booktickets/:id",
+               element: <BookTickets />,
             },
          ],
       },

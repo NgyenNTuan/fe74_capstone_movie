@@ -101,7 +101,7 @@ const Showtime = () => {
   //   // formik.setFieldTouched()
   // }
   let film = {};
-  if(localStorage.getItem('filmParam')){
+  if (localStorage.getItem('filmParam')) {
     film = JSON.parse(localStorage.getItem('filmParam'));
   }
   return (
@@ -123,8 +123,11 @@ const Showtime = () => {
       }}
       onSubmitCapture={formik.handleSubmit}
     >
-      <h3 className='font-bold text-2xl mb-1'>Tạo lịch chiếu - Phim: {film.tenPhim}</h3>
-      <img src={film?.hinhAnh} alt="" style={{width:"120px",height:"200px"}}/>
+      <h3 className='font-bold text-2xl mb-5 '>Tạo lịch chiếu - Phim: {film.tenPhim}</h3>
+      <div className='w-32 m-auto mb-5'>
+        <img src={film?.hinhAnh} alt="" style={{ width: "120px", height: "200px" }} />
+        <p className='italic'>( hình ảnh phim )</p>
+      </div>
       <Form.Item label="Form Size" name="size">
         <Radio.Group>
           <Radio.Button value="small">Small</Radio.Button>
@@ -152,9 +155,9 @@ const Showtime = () => {
       <Form.Item label="Giá vé">
         <InputNumber min={75000} max={150000} onChange={onChangeInputNumber} />
       </Form.Item>
-      <Form.Item label="Button">
-        <Button htmlType='submit'>Tạo lịch chiếu</Button>
-      </Form.Item>
+      <div className='text-right w-full'>
+        <button type='submit' className='bg-green-500 text-white font-bold  p-2  rounded-md  transition duration-300 scale-95 hover:scale-105'>Tạo lịch chiếu</button>
+      </div>
     </Form>
   );
 }
