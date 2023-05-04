@@ -4,10 +4,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { quanLyPhimServices } from "../services/quanLyPhim.services";
 import ShowtimeDetail from "../components/ShowtimeDetail";
 
-const contentStyle = {
-   backgroundImage: "url('./bgmovie.jpg')",
-};
-
 const MovieDetail = () => {
    const params = useParams();
    const navigate = useNavigate();
@@ -44,7 +40,6 @@ const MovieDetail = () => {
    return (
       <section
          className="text-gray-600 body-font overflow-hidden pt-28 z-10 relative"
-         style={contentStyle}
          id="movieDetail"
       >
          <div className="container px-5 py-24 mx-auto">
